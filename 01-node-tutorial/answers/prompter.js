@@ -48,7 +48,9 @@ const server = http.createServer((req, res) => {
       // here, you can add your own logic
       const itemValue = body['item'];
       if (itemValue === '123456') {
-        answer = 'Welcome!';
+        //print answer
+        answer = 'Welcome! Nice to see you again!';
+        console.log('Yay! You goy this!');
       } else {
         answer = 'No entrance!';
       }
@@ -66,6 +68,9 @@ const server = http.createServer((req, res) => {
   } else {
     res.end(form());
   }
+});
+server.on('request', (req) => {
+  console.log('event received: ', req.method, req.url);
 });
 
 server.listen(3000);
