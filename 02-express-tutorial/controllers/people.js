@@ -14,7 +14,7 @@ const addPerson = (req, res) => {
 const getPeople = (req, res) => {
   res.status(200).json({ success: true, data: people });
 };
-const replacePeople = (req, res) => {
+const putPersonById = (req, res) => {
   const { id } = req.params;
   const { name } = req.body;
   const person = people.find((person) => person.id === Number(id));
@@ -45,4 +45,4 @@ const deletePerson = (req, res) => {
   return res.status(200).json({ success: true, data: newPeople });
 };
 
-module.exports = { addPerson, getPeople, replacePeople, deletePerson };
+module.exports = { addPerson, getPeople, putPersonById, deletePerson };

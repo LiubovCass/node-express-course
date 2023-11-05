@@ -4,7 +4,7 @@ const router = express.Router();
 const {
   addPerson,
   getPeople,
-  replacePeople,
+  putPersonById,
   deletePerson,
 } = require('../controllers/people.js');
 
@@ -27,7 +27,7 @@ router.post('/', addPerson);
 //   res.status(201).json({ success: true, name: req.body.name });
 //});
 
-router.put('/:id', replacePeople);
+router.put('/:id', putPersonById);
 
 router.delete('/:id', deletePerson);
 module.exports = router;
