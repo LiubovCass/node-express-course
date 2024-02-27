@@ -29,7 +29,7 @@ let answer;
 // This is just ordinary html with string interpolation.
 const form = () => {
   return `
-  <body>
+  <body style="background-color:yellow;">
   <p>${answer}</p>
   <form method="POST">
   <input name="item"></input>

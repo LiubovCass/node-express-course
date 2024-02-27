@@ -1,30 +1,30 @@
-// const { setDefaultResultOrder } = require('dns');
-const { readFile, writeFile } = require('fs');
+const { writeFile } = require('fs');
+const path = require('path');
 console.log('start');
-readFile('../content/first.txt', 'utf8', (err, result) => {
+// Get the absolute path to the file using __dirname
+const filePath = path.join(__dirname, 'temporary', 'fileB.txt');
+writeFile(filePath, 'Here is line 1', { flag: 'w' }, (err, result) => {
   if (err) {
     console.log(err);
-    return;
-  }
-  const first = result;
-  readFile('../content/second.txt', 'utf8', (err, result) => {
-    if (err) {
-      console.log(err);
-      return;
-    }
-    const second = result;
-    writeFile(
-      './temporary/fileB.txt',
-      `Here is the result : ${first}, ${second}`,
-      (err, result) => {
-        if (err) {
-          console.log(err);
-          return;
-        }
+  } else {
+    console.log(result);
+    console.log('done with line 1');
+    writeFile(filePath, 'Here is line 2', { flag: 'a' }, (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
         console.log(result);
-        console.log('done with this task');
+        console.log('done with line 2');
+        writeFile(filePath, 'Here is line 3', { flag: 'a' }, (err, result) => {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log(result);
+            console.log('done with line 3');
+          }
+          console.log('finish');
+        });
       }
-    );
-  });
+    });
+  }
 });
-console.log('starting next task');
